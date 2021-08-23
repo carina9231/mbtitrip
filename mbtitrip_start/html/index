@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>MBTI TRIP</title>
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/animation.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <section id="main" class="mx-auto mt-5 py-2 px-3">
+        <div class="col-8 mx-auto">
+            <img class="img-fluid" src="../start/img/logo.png" alt="mainImage">
+        </div>
+        <div>
+            <h1>나의 여행 MBTI는?</h1>
+            <p class="b-text">
+                <br>
+                MBTI 성격 유형에 따라 여행을 떠나보아요!
+            </p>
+            <p class="b-text">여행을 함께갈 친구, 연인과 테스트를 통해 계획을 짠다면
+            </p>
+            <p class="b-text">함께 떠날 여행 행복이 2배!!!</p>
+        </div>
+    </section>
+    <div class="start-button mt-3">
+        <button type="button" class="btn-1 btn-info" onclick="js:begin()">시작하기</button>
+    </div>
+    <div class="container">
+        <section id="qna" class="qna-card mx-auto mt-5 py-2 px-3">
+
+
+        </section>
+    </div>
+    <section id="mbti-result">
+
+
+    </section>
+    <section id="area-result">
+
+
+    </section>
+    <script src="./js/start.js" charset="utf-8">
+
+    </script>
+</div>
+</body>
+</html>
