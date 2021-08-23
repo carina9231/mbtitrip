@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>MBTI TRIP</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Single Day', cursive;
+        }
+
+        .global-wrapper {
+            text-align: center;
+        }
+
+        .image {
+            width: 200px;
+            height: 150px;
+        }
+
+        .ant-space-item {
+            width: 800px;
+            margin: 30px auto;
+            border-radius: 30px;
+        }
+
+
+        .all-mbti {
+            margin-left: 30%;
+            display: block;
+            width: 200px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px darkblue solid;
+            float: left;
+        }
+
+        .all-trip {
+            margin-right: 30%;
+            display: block;
+            width: 200px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px darkblue solid;
+            float: right;
+        }
+
+        .share {
+            margin: auto;
+            display: block;
+            width: 200px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px darkblue solid;
+        }
+
+        .card1 {
+            width: 300px;
+            height: 300px;
+            border: 2px darkblue solid;
+            float: left;
+            margin: 50px;
+            border-radius: 10px;
+        }
+
+        .card2 {
+            width: 300px;
+            height: 300px;
+            border: 2px darkblue solid;
+            float: right;
+            margin: 50px;
+            border-radius: 10px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="all">
+    <div class="ant-space-item" style="margin-bottom:16px">
+        <div class="global-wrapper result">
+            <div class=title><a href='https://ifh.cc/v-bzZZgN' target='_blank'><img class="image"
+                                                                                    src='https://ifh.cc/g/bzZZgN.png'
+                                                                                    border='0'></a></div>
+            <h1>당신의 MBTI는 <span style="color: darkblue">mbti결과</span>입니다</h1>
+        </div>
+        <div>
+            <div class="card1" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">지역명1</h5>
+                    <p class="card-text">추천하는 카페 : <span>카페 데이터</span></p>
+                    <p class="card-text">추천하는 명소 : <span>명소 데이터</span></p>
+                    <p class="card-text">추천하는 음식점 : <span>음식점 데이터</span></p>
+
+                </div>
+            </div>
+            <div class="card2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">지역명2</h5>
+                    <p class="card-text">추천하는 카페 : <span>카페 데이터</span></p>
+                    <p class="card-text">추천하는 명소 : <span>명소 데이터</span></p>
+                    <p class="card-text">추천하는 음식점 : <span>음식점 데이터</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button">
+        <button type="button" class="btn all-mbti">모든 MBTI유형 보기</button>
+        <button type="button" class="btn all-trip">모든 추천지역 보기</button>
+        <button type="button" class="btn share">친구들에게 공유하기</button>
+    </div>
+</div>
+</body>
+</html>
