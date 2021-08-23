@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+              integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+              crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+              integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+              crossorigin="anonymous"></script>
+      <meta charset="UTF-8">
+      <title>MBTI TRIP</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+      <style>
+/*        font-family: 'Single Day', cursive;*/
+          body, h1, h2, h3, h4, ul, li {
+            margin:0;
+            padding:0;
+          }
+
+          .container { 
+            width: 1200px; 
+            max-width: 980px;
+            height: auto;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+          }
+        
+          .header {
+            width: 300px;
+            height: 100px;
+            margin: 0 auto;
+            padding: 20px 0;
+          }   
+         
+          .title {
+            background-color: coral;
+          }
+          
+          .contents {
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            padding: 20px;
+          }
+
+          .data-item ul {
+            list-style: none;
+            display: block;
+          }        
+        
+          .data-item li {
+            width: 100px;
+            height: 100px;
+            border: darkblue solid;
+            border-radius: 5px;
+            background-color: #ffffff;
+            display: inline-block;
+          }
+      </style>
+  </head>
+  
+  <body>
+    
+    <div class="container"> <!--전체 컨테이너-->
+          <div class="header"> <!--header 로고-->
+              <h1>로고 영역</h1>
+          </div>
+      
+          <div class="title">
+              <h4> 전체 mbti 결과를 볼 수 있습니다.</h4>
+          </div>
+      
+          <div class="contents">
+              <div class="data-item">
+                <ul>
+                  <li>ISTJ</li>
+                  <li>ISFJ</li>
+                  <li>INFJ</li>
+                  <li>INTJ</li>
+                </ul>
+                <ul>
+                  <li>ISTP</li>
+                  <li>ISFP</li>
+                  <li>INFP</li>
+                  <li>INTP</li>
+                </ul>
+                <ul>
+                  <li>ESTP</li>
+                  <li>ESFP</li>
+                  <li>ENFP</li>
+                  <li>ENTP</li>
+                </ul>
+                <ul>
+                  <li>ESTJ</li>
+                  <li>ESFJ</li>
+                  <li>ENFJ</li>
+                  <li>ENTJ</li>
+                </ul>  
+            </div>  
+          </div>
+    </div>
+    
+  </body>
+</html>
