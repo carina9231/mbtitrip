@@ -1,56 +1,114 @@
-from pymongo import MongoClient
-
 from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
+from pymongo import MongoClient
+
 client = MongoClient('localhost', 27017)
-db = client.mbti
+db=client.bin
+
 
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+   return render_template('main.html')
 
 
-@app.route('/api/list', methods=['GET'])
-def show_mbti():
-    mbti_name = list(db.mbti.find({}, {'_id': False}))
-    return jsonify({'mbti_names': mbti_name})
+@app.route('/work')
+def work():
+   return render_template('photo.html')
 
 
-@app.route('/api/list', methods=['GET'])
-def show_region():
-    region_name = list(db.mbti.find({}, {'_id': False}))
-    return jsonify({'region_names': region_name})
+@app.route('/work/street')
+def street():
+   return render_template('as.html')
 
-@app.route('/api/list', methods=['GET'])
-def show_cafe():
-    cafe_name = list(db.mbti.find({}, {'_id': False}))
-    return jsonify({'cafe_names': cafe_name})
 
-@app.route('/api/list', methods=['GET'])
-def show_site():
-    site_name = list(db.mbti.find({}, {'_id': False}))
-    return jsonify({'site_names': site_name})
+@app.route('/work/flower')
+def flower():
+   return render_template('as.html')
 
-@app.route('/api/list', methods=['GET'])
-def show_restaurant():
-    restaurant_name = list(db.mbti.find({}, {'_id': False}))
-    return jsonify({'restaurant_names': restaurant_name})
 
-@app.route('/api/like', methods=['POST'])
-def like_region():
-    region_receive = request.form['region_give']
+@app.route('/work/moon')
+def moon():
+   return render_template('as.html')
 
-    target_like = db.mbti.find_one({'region': region_receive})
-    current_like = target_like['like']
 
-    new_like = current_like + 1
+@app.route('/work/ch')
+def ch():
+   return render_template('as.html')
 
-    db.mbti.update_one({'region': region_receive}, {'$set':{'like': new_like}})
 
-    return jsonify({'msg': '좋아요 완료!'})
+@app.route('/work/beauty')
+def beauty():
+   return render_template('as.html')
+
+
+@app.route('/work/castle')
+def castle():
+   return render_template('as.html')
+
+
+
+@app.route('/mbti')
+def q():
+   return render_template('mbmb.html')
+
+
+@app.route('/mbti/review', methods=['GET'])
+def mb():
+    rev = list(db.us.find({}, {'_id': False}))
+    return jsonify({'aaa': rev})
+
+
+
+
+
+
+
+
+
+
+#연습용 창고
+
+
+## HTML을 주는 부분
+@app.route('/book')
+def book():
+    return render_template('mongo.html')
+
+## API 역할을 하는 부분
+@app.route('/book/review', methods=['POST'])
+def write_review():
+    title_receive = request.form['tg']
+    author_receive = request.form['ag']
+    review_receive = request.form['rg']
+    doc = {
+        'title': title_receive,
+        'author': author_receive,
+        'review': review_receive
+    }
+    db.bookreview.insert_one(doc)
+    return jsonify({'msg': '저장!'})
+
+
+@app.route('/book/review', methods=['GET'])
+def read_reviews():
+    rev = list(db.bookreview.find({}, {'_id': False}))
+    return jsonify({'alr': rev})
+
+
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+   app.run('0.0.0.0',port=5000,debug=True)
+
+
+
+
+
+
+
+
+
+
+
