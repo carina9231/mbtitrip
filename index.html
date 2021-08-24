@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>MBTI TRIP</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+
+    <style>
+        * {
+            font-family: 'Single Day', cursive;
+        }
+
+        .global-wrapper {
+            text-align: center;
+        }
+
+        .image {
+            width: 200px;
+            height: 150px;
+        }
+
+        .ant-space-item {
+            width: 800px;
+            margin: 30px auto;
+            border-radius: 30px;
+        }
+
+
+        .all-mbti {
+            margin-left: 30%;
+            display: block;
+            width: 180px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px darkblue solid;
+            float: left;
+        }
+
+        .all-trip {
+            margin-right: 30%;
+            display: block;
+            width: 180px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px darkblue solid;
+            float: right;
+        }
+
+        .share {
+            margin: auto;
+            display: block;
+            width: 180px;
+            font-size: 18px;
+            border-radius: 30px;
+            border: 2px darkblue solid;
+        }
+
+        .card1 {
+            width: 380px;
+            height: 500px;
+            border: 2px darkblue solid;
+            float: left;
+            margin: 50px 0px 50px 0px;
+            border-radius: 10px;
+        }
+
+        .card2 {
+            width: 380px;
+            height: 500px;
+            border: 2px darkblue solid;
+            float: right;
+            margin: 50px 0px 50px 0px;
+            border-radius: 10px;
+        }
+
+        feeling_div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container {
+            float: right;
+        }
+
+        .feeling_a {
+            border: 2px solid darkred;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: darkred;
+            width: 100px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            showmbti();
+            showregion();
+            showcafe();
+            showsite();
+            showrestaurant();
+        });
+
+        function showmbti() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/list?sample_give=샘플데이터',
+                data: {},
+                success: function (response) {
+                    alert(response['msg']);
+                }
+            });
+        }
+
+        function showregion() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/list?sample_give=샘플데이터',
+                data: {},
+                success: function (response) {
+                    alert(response['msg']);
+                }
+            });
+        }
+
+        function showcafe() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/list?sample_give=샘플데이터',
+                data: {},
+                success: function (response) {
+                    alert(response['msg']);
+                }
+            });
+        }
+
+        function showsite() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/list?sample_give=샘플데이터',
+                data: {},
+                success: function (response) {
+                    alert(response['msg']);
+                }
+            });
+        }
+
+        function showrestaurant() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/list?sample_give=샘플데이터',
+                data: {},
+                success: function (response) {
+                    alert(response['msg']);
+                }
+            });
+        }
+
+        function likeregion(region) {
+            $.ajax({
+                type: 'POST',
+                url: '/api/like',
+                data: {region_give: region},
+                success: function (response) {
+                    alert(response['msg']);
+                    window.location.reload()
+                }
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="all">
+    <div class="ant-space-item" style="margin-bottom:16px">
+        <div class="global-wrapper result">
+            <div class=title><a href='https://ifh.cc/v-bzZZgN' target='_blank'><img class="image"
+                                                                                    src='https://ifh.cc/g/bzZZgN.png'
+                                                                                    border='0'></a></div>
+            <h1>당신의 MBTI는 <span style="color: darkblue">${mbti}</span>입니다</h1>
+        </div>
+        <div>
+            <div class="card1">
+                <div class="card-body">
+                    <div class="card-content">
+                        <h3 class="card-title">${region}</h3>
+                        <br></br>
+                        <h5>추천하는 카페</h5>
+                        <p class="card-text">${cafe}</p>
+                        <h5>추천하는 관광지</h5>
+                        <p class="card-text">${site}</p>
+                        <h5>추천하는 음식점</h5>
+                        <p class="card-text">${restaurant}</p>
+                        <br></br>
+                        <div class="feeling_div">
+                            <div class="button-container like-container">
+                                <button class="feeling_a" onclick="likeregion('${region}')">
+                                    <i class="fa fa-heart-o">좋아요</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card2">
+                <div class="card-body">
+                    <div class="card-content">
+                        <h3 class="card-title">${region}</h3>
+                        <br></br>
+                        <h5>추천하는 카페</h5>
+                        <p class="card-text">${cafe}</p>
+                        <h5>추천하는 관광지</h5>
+                        <p class="card-text">${site}</p>
+                        <h5>추천하는 음식점</h5>
+                        <p class="card-text">${restaurant}</p>
+                        <br></br>
+                        <div class="feeling_div">
+                            <div class="button-container like-container">
+                                <button class="feeling_a" onclick="likeregion('${region}')">
+                                    <i class="fa fa-heart-o">좋아요</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button">
+        <button type="button" class="btn all-mbti">모든 MBTI유형 보기</button>
+        <button type="button" class="btn all-trip">모든 추천지역 보기</button>
+        <button type="button" class="btn share">친구들에게 공유하기</button>
+    </div>
+</div>
+</body>
+</html>
