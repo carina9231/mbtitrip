@@ -5,6 +5,16 @@
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Lucky7">
+    <meta name="keywords" content="MBTI TRIP">
+    <meta name="description" content="MBTI TRIP">
+
+    <!-- sns share -->
+    <meta property="og:url" />
+    <meta property="og:title" content="MBTI TRIP" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ifh.cc/g/bzZZgN.png" />
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -25,7 +35,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init('5e8c364b7dafa90db1d21d7fae62d610\n');
+        Kakao.isInitialized();
+    </script>
 
     <style>
         * {
@@ -267,7 +281,8 @@
         <a href="https://naver.com">
             <button type="button" class="btn all-trip">모든 추천지역 보기</button>
         </a>
-        <button type="button" class="btn share">친구들에게 공유하기</button>
+        <button type="button" class="btn share" onclick="js:kakaoShare()">친구들에게 공유하기</button>
+        <script src="./share.js" charset="UTF-8"></script>
     </div>
 </div>
 </body>
