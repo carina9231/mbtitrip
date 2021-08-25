@@ -14,10 +14,6 @@ def qna():
    return render_template('mbmb.html')
 
 
-@app.route('/mbti/result')
-def re():
-   return render_template('mbtiend.html')
-
 
 @app.route('/mbti/review', methods=['GET'])
 def mb():
