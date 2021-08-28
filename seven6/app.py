@@ -11,8 +11,8 @@ mbti_result=''
 
 @app.route('/mbti')
 def main():
-       intp='intp'
-       return render_template('mbmb.html',res=intp)
+   
+       return render_template('mbmb.html')
 
 
 
