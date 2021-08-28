@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Lucky7">
+        <meta name="keywords" content="MBTI TRIP">
+        <meta name="description" content="MBTI TRIP">
+
+        <!-- sns share -->
+        <meta property="og:url" />
+        <meta property="og:title" content="MBTI TRIP" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://ifh.cc/g/bzZZgN.png" />
+
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <title>MBTI TRIP</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+
+        <style>
+            * {
+                font-family: 'Single Day', cursive;
+            }
+
+            body {
+                height: 100vh;
+                background-image: url("https://mblogthumb-phinf.pstatic.net/MjAxOTA2MThfODYg/MDAxNTYwODY4ODg4MzQ5.A-iypR3H5iV4gJXLw6jkAUTmDdIdXo5Z752ZUWLjusgg.re2k4KJMzw72h4s1x_y3VqpA3C9ncC9r9heYvh3-hmYg.JPEG.jubbigi/%EA%B5%AC%EB%A6%84%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B802.jpg?type=w800");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .global-wrapper {
+                text-align: center;
+                background-color: white;
+                border-radius: 30px;
+                border: 2px darkblue solid;
+            }
+
+            .image {
+                width: 200px;
+                height: 150px;
+            }
+
+            .ant-space-item {
+                width: 800px;
+                margin: 30px auto;
+                border-radius: 30px;
+            }
+
+
+            .all-mbti {
+                margin-left: 30%;
+                display: block;
+                width: 180px;
+                font-size: 18px;
+                border-radius: 30px;
+                border: 2px darkblue solid;
+                float: left;
+            }
+
+            .all-trip {
+                margin-right: 30%;
+                display: block;
+                width: 180px;
+                font-size: 18px;
+                border-radius: 30px;
+                border: 2px darkblue solid;
+                float: right;
+            }
+
+            .share {
+                margin: auto;
+                display: block;
+                width: 180px;
+                font-size: 18px;
+                border-radius: 30px;
+                border: 2px darkblue solid;
+            }
+
+            .card1 {
+                width: 380px;
+                height: 500px;
+                border: 2px darkblue solid;
+                float: left;
+                margin: 50px 0px 50px 0px;
+                border-radius: 10px;
+                background-color: white;
+            }
+
+            .card2 {
+                width: 380px;
+                height: 500px;
+                border: 2px darkblue solid;
+                float: right;
+                margin: 50px 0px 50px 0px;
+                border-radius: 10px;
+                background-color: white;
+            }
+
+            feeling_div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .button-container {
+                float: right;
+            }
+
+            .feeling_a {
+                border: 2px solid darkred;
+                padding: 10px 20px;
+                border-radius: 30px;
+                color: darkred;
+                width: 130px; /*이항목 바꾸면 버튼 길이 달라짐*/
+            }
+            .feeling_a:hover{
+                background-color: orange;
+                cursor:pointer;
+            }
+        </style>
+        <script>
+
+
+
+
+           function likeregion(region) {
+
+               console.log(region);
+               $.ajax({
+                    type: 'POST',
+                    url: '/mbti/like',
+                    data: {response: region},
+
+                    success: function (response) {
+                        alert(response['msg']);
+                        window.location.reload()
+                    }
+                });
+            }
+
+
+            function kakaoShare() {
+                Kakao.Link.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: '디저트 사진',
+                        description: '아메리카노, 빵, 케익',
+                        imageUrl:
+                            'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+                        link: {
+                            mobileWebUrl: 'https://developers.kakao.com',
+                            androidExecutionParams: 'test',
+                        },
+                    },
+                    social: {
+                        likeCount: 10,
+                        commentCount: 20,
+                        sharedCount: 30,
+                    },
+                    buttons: [
+                        {
+                            title: '웹으로 이동',
+                            link: {
+                                mobileWebUrl: 'https://developers.kakao.com',
+                            },
+                        },
+                        {
+                            title: '앱으로 이동',
+                            link: {
+                                mobileWebUrl: 'https://developers.kakao.com',
+                            },
+                        },
+                    ]
+                });
+            }
+
+        </script>
+
+    </head>
+
+
+    <body>
+        <div class="all">
+            <div class="ant-space-item" style="margin-bottom:16px">
+                <div class="global-wrapper result">
+                    <div class=title><a href='https://ifh.cc/v-bzZZgN' target='_blank'><img class="image"
+                                                                                            src='https://ifh.cc/g/bzZZgN.png'
+                                                                                            border='0'></a></div>
+                    <h1>당신의 MBTI는 <span >{{mbti}}</span>입니다</h1>
+                </div>
+                <div>
+                    <div class="card1">
+                        <div class="card-body">
+                            <div class="card-content">
+                                <h3 class="card-title">{{city1}}</h3>
+                                <br>
+                                <h5>추천하는 카페</h5>
+                                <p class="card-text">{{cafe1}}</p>
+                                <h5>추천하는 관광지</h5>
+                                <p class="card-text">{{tour1}}</p>
+                                <h5>추천하는 음식점</h5>
+                                <p class="card-text">{{restaurant1}}</p>
+                                <br>
+                                <div class="feeling_div">
+                                    <div class="button-container like-container">
+                                        <button class="feeling_a" onclick="likeregion({{area1}})">
+                                            <i class="fa fa-heart-o" >좋아요 {{like1}} 개</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card2">
+                        <div class="card-body">
+                            <div class="card-content">
+                                <h3 class="card-title">{{city2}}</h3>
+                                <br>
+                                <h5>추천하는 카페</h5>
+                                <p class="card-text"> {{cafe2}}</p>
+                                <h5>추천하는 관광지</h5>
+                                <p class="card-text">{{tour2}}</p>
+                                <h5>추천하는 음식점</h5>
+                                <p class="card-text">{{restaurant2}}</p>
+                                <br>
+                                <div class="feeling_div">
+                                    <div class="button-container like-container">
+                                        <button class="feeling_a" onclick="likeregion({{area2}})">
+                                            <i class="fa fa-heart-o" >좋아요 {{like2}} 개</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bottom" >
+                <a href="/mbti/all/mbti">
+                    <button type="button" class="btn all-mbti">모든 MBTI유형 보기</button>
+                </a>
+                <a href="/mbti/all/area">
+                    <button type="button" class="btn all-trip">모든 추천지역 보기</button>
+                </a>
+                <button type="button" class="btn share" onclick="js:kakaoShare()">친구들에게 공유하기</button>
+
+            </div>
+        </div>
+    </body>
+    <script>
+            Kakao.init('5e8c364b7dafa90db1d21d7fae62d610\n');
+            Kakao.isInitialized();
+    </script>
+
+
+
+</html>
