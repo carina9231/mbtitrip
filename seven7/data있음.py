@@ -2,13 +2,9 @@ from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.mbti
 
-receive = 8
-like = list(db.like.find({}, {'_id': False}))
-citys = like[receive]['city']
-target = like[receive]['like']
-print(citys,target);
 
-'''
+
+
 db.qna.insert_one({'q':'1.특별한 약속이 없는 주말에 나는','a1':'단톡에 연락해서 친구들과 약속을 잡는다',
                   'a2':'침대랑 하루 종일 물아일체가 된다','r1':'e','r2':'i'})
 db.qna.insert_one({'q':'2.친구들과 놀 때 나는','a1':'왁자지껄한 신나는 분위기를 좋아한다',
@@ -91,7 +87,5 @@ db.like.insert_one({"city":'울릉도','like':22});
 db.like.insert_one({"city":'통영','like':31});
 db.like.insert_one({"city":'여수','like':13});
 db.like.insert_one({"city":'양양','like':65});
-'''
-
 
 
