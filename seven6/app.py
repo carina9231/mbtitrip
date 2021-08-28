@@ -11,7 +11,7 @@ mbti_result=''
 
 @app.route('/mbti')
 def main():
-   
+
        return render_template('mbmb.html')
 
 
@@ -19,31 +19,47 @@ def main():
 @app.route('/mbti/result/<mbti>/<int:order>')
 def result(mbti,order):
 
-    mbtis = mbti
-    orders = order
 
-    mbti = list(db.mt.find({}, {'_id': False}))
+
+
+    mbtis = list(db.mbti.find({}, {'_id': False}))
     like = list(db.like.find({}, {'_id': False}))
+    city = list(db.city.find({}, {'_id': False}))
 
-    city1 = mbti[order]['city1']
-    city2 = mbti[order]['city2']
-    tour1 = mbti[order]['tour1']
-    tour2 = mbti[order]['tour2']
-    restaurant1 = mbti[order]['food1']
-    restaurant2 = mbti[order]['food2']
-    cafe1 = mbti[order]['cafe1']
-    cafe2 = mbti[order]['cafe2']
+    area1 = mbtis[order]['area1']
+    area2 = mbtis[order]['area2']
 
-    return render_template('index.html',mbti=mbtis,cafe1=cafe1,cafe2=cafe2,city1=city1,city2=city2,tour1=tour1,tour2=tour2,restaurant1=restaurant1,restaurant2=restaurant2)
+    city1 = city[area1]['city']
+    city2 = city[area2]['city']
+
+    tour1 = city[area1]['tour']
+    tour2 = city[area2]['tour']
+
+    restaurant1 = city[area1]['food']
+    restaurant2 = city[area2]['food']
+
+    cafe1 = city[area1]['cafe']
+    cafe2 = city[area2]['cafe']
+
+    like1 = like[area1]['like']
+    like2 = like[area1]['like']
+
+    return render_template('index.html',mbti=mbti,cafe1=cafe1,cafe2=cafe2,city1=city1,city2=city2,tour1=tour1,tour2=tour2,restaurant1=restaurant1,restaurant2=restaurant2,like1=like1,like2=like2)
 
 
+@app.route('/mbti/like', methods=['POST'])
+def like():
+    recive = request.form['response']
 
+   
+
+    return jsonify({'msg': '좋아요 완료!'})
 
 
 
 @app.route('/mbti/all/mbti')
 def mbti():
-   return render_template('inin.html')
+    return render_template('inin.html')
 
 
 @app.route('/mbti/all/area')
@@ -54,10 +70,11 @@ def area():
 
 @app.route('/mbti/re', methods=['GET'])
 def information():
-    respons = list(db.us.find({}, {'_id': False}))
-
-
-    return jsonify({'qna':respons})
+    qna = list(db.qna.find({}, {'_id': False}))
+    like = list(db.like.find({}, {'_id': False}))
+    city = list(db.city.find({}, {'_id': False}))
+    mbti = list(db.mbti.find({}, {'_id': False}))
+    return jsonify({'qna':qna,'like':like,'city':city,'mbti':mbti})
 
 
 
