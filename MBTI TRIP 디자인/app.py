@@ -75,7 +75,7 @@ def area():
 @app.route('/mbti/re', methods=['GET'])
 def information():
     qna = list(db.qna.find({}, {'_id': False}))
-    like = list(db.like.find({}, {'_id': False}))
+    like = list(db.like.find({}, {'_id': False}).sort('like', -1))
     city = list(db.city.find({}, {'_id': False}))
     mbti = list(db.mbti.find({}, {'_id': False}))
     return jsonify({'qna':qna,'like':like,'city':city,'mbti':mbti})
