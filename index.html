@@ -54,6 +54,7 @@
             h1, h2, h3, h4, ul, li, table, tr, td {
                 margin: 0;
                 padding: 0;
+                list-style: none;
             }
 
             .container {
@@ -61,7 +62,6 @@
                 max-width: 980px;
                 height: auto;
                 margin: 30px auto;
-                text-align: center;
             }
 
             .global-wrapper {
@@ -112,8 +112,8 @@
             }
 
             .card1 {
-                width: 345px;
-                height: 440px;
+                width: 350px;
+                height: auto;
                 border: 2px darkblue solid;
                 float: left;
                 margin: 30px 0px 30px 0px;
@@ -122,23 +122,41 @@
             }
 
             .card2 {
-                width: 345px;
-                height: 440px;
+                width: 350px;
+                height: auto;
                 border: 2px darkblue solid;
                 float: right;
                 margin: 30px 0px 30px 0px;
                 border-radius: 10px;
                 background-color: white;
             }
-            
-            .suggest {
-                height: 360px;
+            .card-image {
+                width: 346px;
+                height: 220px;
+                border-radius: 10px 10px 0 0;
+                background-color: red;
+                object-fit: cover;
+            }
+
+            .card-data-container {
+                height: 260px;
+                padding: 15px;
+            }
+            .card-data-container > ul li:nth-child(1) {
+                font-weight: bold;
+                font-size: 28px;
+                text-align: center;
+            }
+            .card-data-container > ul li:nth-child(2n) {
+                font-weight: bold;
+                font-size: 15px;
+                line-height: 1.5;
             }
 
             .button-container {
                 display: block;
                 text-align: center;
-                margin: auto;
+                margin-bottom: 15px;
             }
 
             .feeling_div {
@@ -147,15 +165,17 @@
                 align-items: center;
             }
 
-            .feeling_a {
-                border: 2px solid darkblue;
+            .like_btn {
+                width: 120px;
+                border:0;
+                font-weight: bold;
                 border-radius: 30px;
-                color: black;
-                width: 100px;
+                color: white;
+                background-color: blue;
             }
 
-            .feeling_a:hover, .feeling_a:focus {
-                background-color: blue;
+            .like_btn:hover, .like_btn:focus {
+                background-color: darkblue;
                 color: white;
                 cursor: pointer;
             }
@@ -166,7 +186,6 @@
                 cursor: pointer;
             }
 
-            .card-title
 
         </style>
 
@@ -239,49 +258,42 @@
                 </div>
                 <div>
                     <div class="card1">
-                        <div class="card-body">
-                            <div class="card-content">
-                                <div class="suggest">
-                                <h3 class="card-title">{{city1}}</h3>
-                                <br>
-                                <h5>추천하는 카페</h5>
-                                <p class="card-text">{{cafe1}}</p>
-                                <h5>추천하는 관광지</h5>
-                                <p class="card-text">{{tour1}}</p>
-                                <h5>추천하는 음식점</h5>
-                                <p class="card-text">{{restaurant1}}</p>
-                                </div>
-                                <div class="feeling_div">
-                                    <div class="button-container like-container">
-                                        <button class="feeling_a btn" onclick="likeregion({{area1}})">
-                                            <i class="fa fa-heart-o" >좋아요 {{like1}} 개</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <img  src='{{사진}}' border='0' class="card-image">
+                        <div class="card-data-container">
+                            <ul>
+                                <li class="card-title">{{city1}}</li>
+                                <li>추천하는 카페</li>
+                                <li class="card-text">{{cafe1}}</li>
+                                <li>추천하는 관광지</li>
+                                <li class="card-text">{{tour1}}</li>
+                                <li>추천하는 음식점</li>
+                                <li class="card-text">{{restaurant1}}</li>
+                            </ul>
+                        </div>
+                        <div class="button-container like-container">
+                            <button class="like_btn" onclick="likeregion({{area1}})">
+                                좋아요 {{like1}} 개
+                            </button>
                         </div>
                     </div>
+
                     <div class="card2">
-                        <div class="card-body">
-                            <div class="card-content">
-                                <div class="suggest">
-                                    <h3 class="card-title">{{city2}}</h3>
-                                    <br>
-                                    <h5>추천하는 카페</h5>
-                                    <p class="card-text"> {{cafe2}}</p>
-                                    <h5>추천하는 관광지</h5>
-                                    <p class="card-text">{{tour2}}</p>
-                                    <h5>추천하는 음식점</h5>
-                                    <p class="card-text">{{restaurant2}}</p>
-                                </div>
-                                <div class="feeling_div">
-                                    <div class="button-container like-container">
-                                        <button class="feeling_a btn" onclick="likeregion({{area2}})">
-                                            <i class="fa fa-heart-o" >좋아요 {{like2}} 개</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <img  src='{{사진}}' border='0' class="card-image">
+                        <div class="card-data-container">
+                            <ul>
+                                <li class="card-title">{{city2}}</li>
+                                <li>추천하는 카페</li>
+                                <li class="card-text">{{cafe2}}</li>
+                                <li>추천하는 관광지</li>
+                                <li class="card-text">{{tour2}}</li>
+                                <li>추천하는 음식점</li>
+                                <li class="card-text">{{restaurant1}}</li>
+                            </ul>
+                        </div>
+                        <div class="button-container like-container">
+                            <button class="like_btn" onclick="likeregion({{area2}})">
+                                좋아요 {{like2}} 개
+                            </button>
                         </div>
                     </div>
                 </div>
