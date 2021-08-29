@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>MBTI TRIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Single Day', cursive;
+        }
+
+        body {
+            height: 100vh;
+            background-image: url("https://ifh.cc/g/q2h5td.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body, h1, h2, h3, h4, ul, li, table, tr, td {
+            margin:0;
+            padding:0;
+        }
+
+        .container {
+            width: 750px;
+            max-width: 980px;
+            height: auto;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+            width: 750px;
+            height: 250px;
+            margin: 30px auto 30px;
+            padding: 20px 0;
+            border: 1px solid darkblue;
+            border-radius: 20px;
+            background-color: white;
+        }
+
+
+        .contents {
+            padding: 30px;
+            border: 3px solid darkblue;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .data-item {
+            width: 500px;
+            height: 80px;
+            display: block;
+            margin: 0 auto;
+            border: darkblue solid;
+            border-radius: 20px;
+            background-color: white;
+        }
+
+        .data-item:nth-child(-n+15) {
+            margin-bottom: 20px;
+        }
+
+        .area, .like {
+            background-color: lightskyblue;
+            border-radius: 30px;
+            border: darkblue solid;
+            font-size: 20px;
+            width: 100px;
+        }
+
+        .area {
+            float: left;
+        }
+
+        .like {
+            float: right;
+        }
+
+        .local-data-box {
+            width: 400px;
+            padding: 20px;
+            margin: 25px auto;
+        }
+
+        .local-data-box > table td:nth-child(1){
+            padding-left: 20px;
+            text-align: left;
+            font-size: 40pt;
+        }
+
+        .local-data-box > table td:nth-child(2){
+            padding-right: 20px;
+            text-align: right;
+            font-size: 40pt;
+            font-weight: bold;
+        }
+
+        .global-wrapper {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px 0 20px 0;
+            margin: 30px 0;
+            border: 2px darkblue solid;
+        }
+
+        .image {
+            width: 200px;
+            height: 150px;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            showLike();
+        });
+
+
+
+        function showLike() {
+            $.ajax({
+                type: 'GET',
+                url: '/mbti/re',
+                data: {},
+                success: function (response) {
+                    let total_like = response['like'];
+                    for (let i = 0; i < total_like.length; i++) {
+                        let name = total_like[i]['city']
+                        let like = total_like[i]['like']
+                        let temp_html = `<div class="data-item mb-3">
+                                                  <table class="local-data-box">
+                                                      <tr>
+                                                       <td class="area">지역:${name}</td>
+                                                       <td class="like" ">합계:${like}</td>
+                                                      </tr>
+                                                  </table>
+                                              </div>`
+                        $('#like-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container"> <!--전체 컨테이너-->
+        <div class="global-wrapper result">
+            <div>
+                <img class="image" src='/static/image/logo.png' border='0'>
+            </div>
+            <h1>다른 지역결과를 볼 수 있습니다</h1>
+        </div>
+        <div class="contents" id="like-box"></div>
+    </div>
+    <br>
+</body>
+</html>
