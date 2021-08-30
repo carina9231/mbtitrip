@@ -42,7 +42,7 @@
         }
 
         .container {
-            width: 750px;
+            width: 600px;
             max-width: 980px;
             height: auto;
             margin: 0 auto;
@@ -51,7 +51,7 @@
         }
 
         .header {
-            width: 750px;
+            width: 400px;
             height: 250px;
             margin: 30px auto 30px;
             padding: 20px 0;
@@ -65,7 +65,7 @@
             padding: 30px;
             border: 3px solid darkblue;
             background-color: white;
-            border-radius: 10px;
+            border-radius: 20px;
         }
 
         .data-item {
@@ -78,7 +78,7 @@
             background-color: white;
         }
 
-        .data-item:nth-child(-n+15) {
+        .data-item:nth-child(-n+9) {
             margin-bottom: 20px;
         }
 
@@ -87,7 +87,7 @@
             border-radius: 30px;
             border: darkblue solid;
             font-size: 20px;
-            width: 100px;
+            width: 150px;
         }
 
         .area {
@@ -117,21 +117,12 @@
             font-weight: bold;
         }
 
-        .global-wrapper {
-            text-align: center;
-            background-color: white;
-            border-radius: 10px;
-            padding: 10px 0 20px 0;
-            margin: 30px 0;
-            border: 2px darkblue solid;
-        }
-
-        .image {
-            width: 200px;
-            height: 150px;
-        }
-
     </style>
+    <script language="javascript">
+        function popup(i){
+            window.open("./popup/"+i,"popup", "width=450, height=450, left=30, top=30,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
+        }
+    </script>
     <script>
         $(document).ready(function () {
             showLike();
@@ -145,18 +136,27 @@
                 url: '/mbti/re',
                 data: {},
                 success: function (response) {
-                    let total_like = response['like'];
-                    for (let i = 0; i < total_like.length; i++) {
-                        let name = total_like[i]['city']
-                        let like = total_like[i]['like']
+                    let total = response['sort'];
+
+                    for (let i = 0; i < total.length; i++) {
+                        let imgs = total[i]['img'] ;
+                        let name = total[i]['city'];
+                        let like = total[i]['like'];
+
                         let temp_html = `<div class="data-item mb-3">
-                                                  <table class="local-data-box">
+                                                  <table class="local-data-box"  onClick="popup(${i})" style="cursor:pointer">
                                                       <tr>
-                                                       <td class="area">지역:${name}</td>
-                                                       <td class="like" ">합계:${like}</td>
+                                                          <td class="area">${i+1}.지역:${name}</td>
+                                                          <td class="like" ">합계:${like}</td>
+                                                          <td><img
+                                                                  src="${imgs}"
+                                                                  alt="Placeholder image"
+                                                                  style="width: 50px;height: 50px"
+                                                              />
+                                                          </td>
                                                       </tr>
                                                   </table>
-                                              </div>`
+                                          </div>`
                         $('#like-box').append(temp_html)
                     }
                 }
@@ -164,18 +164,18 @@
         }
 
 
+
     </script>
+
 
 </head>
 
 <body>
 
     <div class="container"> <!--전체 컨테이너-->
-        <div class="global-wrapper result">
-            <div>
-                <img class="image" src='/static/image/logo.png' border='0'>
-            </div>
-            <h1>다른 지역결과를 볼 수 있습니다</h1>
+        <div class="header"> <!--header 로고-->
+            <img class="image" src="/static/image/logo.png"  style="width: 200px"  border='0'>
+            <h4>전체 인기 여행지를 볼 수 있습니다.</h4>
         </div>
         <div class="contents" id="like-box"></div>
     </div>
