@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <title>MBTI TRIP</title>
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+        <style>
+             body {
+                height: 100vh;
+                background-color: #7DEBEB;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            * {
+                font-family: 'Single Day', cursive;
+            }
+            p{
+                font-size: 1.5rem;
+            }
+            #main {
+                text-align: center;
+                background-color: white;
+                border-radius: 30px;
+                border: darkblue solid;
+                width: 800px;
+            }
+            #qna{
+                display: none;
+                border-color: darkblue;
+            }
+
+            .btn-1 {
+                width: 150px;
+                height: 70px;
+                border-radius: 30px;
+                border: darkblue solid;
+                font-size: 30px;
+            }
+            .start-button {
+                text-align: center;
+            }
+
+            .qb{
+                background-color: white;
+                text-align: center;
+                border-radius: 20px;
+                width: 90%;
+                height: 50px;
+                display: block;
+            }
+
+            #list {
+                width: 1000px;
+                background-color: white;
+                margin: auto;
+                padding-bottom: 20px;
+                border-radius: 30px;
+                border: darkblue solid;
+                display: block;
+            }
+
+            .image{
+                width: 200px;
+                 display: block;
+                 margin: auto;
+             }
+
+
+
+            .answerlist{
+                display: block;
+                width: 99.5%;
+                border: 0px;
+                font-size: 20px;
+                background-color: white;
+            }
+
+            .answerlist:hover, .answerlist:focus {
+              background-color: lightskyblue;
+
+            }
+
+
+
+
+
+
+
+        </style>
+
+
+    </head>
+    <body>
+        <div class="container">
+            <section id="main" class="mx-auto mt-5 py-2 px-3">
+                <div class="logo">
+                    <img class="image" src="/static/image/logo.png" border='0'>
+
+                </div>
+                <div>
+                    <h1>나의 여행 MBTI는?</h1>
+                    <p class="b-text">
+                        <br>
+                        MBTI 성격 유형에 따라 여행을 떠나보아요!
+                    </p>
+                    <p class="b-text">여행을 함께갈 친구, 연인과 테스트를 통해 계획을 짠다면
+                    </p>
+                    <p class="b-text">함께 떠날 여행 행복이 2배!!!</p>
+                </div>
+
+            </section>
+            <div id="startbutton">
+                <div class="start-button mt-3">
+                        <button type="button" class="btn-1 btn-info " onclick="js:begin()">시작하기</button>
+                </div>
+            </div>
+
+
+
+            <section id="qna" class="qna-card mx-auto mt-5 py-2 px-3">
+                <div class="empty"></div>
+                <div id="list">
+                    <div class="logo mt-2">
+                        <a href='https://ifh.cc/v-bzZZgN' target='_blank'>
+                            <img class="image" src='https://ifh.cc/g/bzZZgN.png' border='0'>
+                        </a>
+                    </div>
+                    <h2 id="questionlist" class="qb mx-auto" style="font-size: 25px"></h2>
+                    <br>
+                    <button id="button1" class="answerlist mb-3 mt-3" onclick="addAnswer(1,0)"></button>
+                    <button id="button2" class="answerlist mx-auto" onclick="addAnswer(0,1)"></button>
+                </div>
+            </section>
+
+
+
+        </div>
+    </body>
+     <script>
+        const main = document.querySelector("#main");
+        const qna = document.querySelector("#qna");
+        const start = document.querySelector("#startbutton");
+        let select='';
+        let qIdx = 0;
+        let select1=0;
+        let select2=0;
+
+
+        function addAnswer(choose1,choose2){
+            let fi=['','E','N','F','J'],si=['','I','S','T','P'];
+
+
+            select1+=choose1;
+            select2+=choose2;
+
+                if ((qIdx+1)%3 === 0 ){
+                    if (select1> select2)select+=fi[(qIdx+1)/3];
+                    else select+=si[(qIdx+1)/3];
+                    select1=select2=0;
+            }
+            next(++qIdx);
+            $(':focus').blur();
+        }
+
+
+
+
+
+        function next(){
+
+            if(12 === qIdx){
+                for (let i=0;i<16;i++){
+                    let mbti_order=['ISTP','ISFP','INFP','INTJ','ISTJ','ISFJ','INFJ','INTJ',
+                        'ESTJ','ESFJ','ENFJ','ENTJ','ESTP','ESFP','ENTP','ENFP']
+                    if (mbti_order[i] === select){
+                        location.href="/mbti/result/"+select+"/"+i;
+                        return
+                    }
+                    else console.log(1);
+                }
+            }
+
+            $(':focus').focus();
+
+            $.ajax({
+                type: "GET",
+                url: "/mbti/re",
+                data: {},
+                success: function (response) {
+                    let qna = response['qna']
+                    let  answer1= qna[qIdx]['a1']
+                    let  answer2= qna[qIdx]['a2']
+                    let questions= qna[qIdx]['q']
+                    document.getElementById('questionlist').innerHTML=questions;
+                    document.getElementById('button1').innerHTML=answer1;
+                    document.getElementById('button2').innerHTML=answer2;
+                }
+            })
+
+
+        }
+
+
+
+        function begin(){
+                main.style.display = "none";
+                start.style.display = "none"
+                qna.style.display = "block"
+                next();
+
+
+        }
+    </script>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>MBTI TRIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Single Day', cursive;
+        }
+
+        body {
+            height: 100vh;
+            background-color: palegoldenrod;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body, h1, h2, h3, h4, ul, li, table, tr, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        a:hover{
+            color: black;
+        }
+        p{
+           font-size: 1.4rem;
+            width: 80%;
+            margin: 1px auto;
+            border-bottom: 1px solid;
+            border-color: blue;
+        }
+        ul{
+            list-style:none;
+        }
+
+        .container {
+            width: 100% ;
+            max-width: 1300px;
+            height: auto;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+              width: 600px;
+              height: 250px;
+              margin: 30px auto 30px;
+              padding: 20px 0;
+              border: darkblue solid;;
+              border-radius: 5px;
+              background-color: white;
+          }
+
+        .mbti{
+            width: 60%;
+            margin: 1px auto;
+            border-bottom: 1px solid;
+            border-color: blue;
+        }
+
+        .contents {
+            padding: 15px;
+            background-color: white;
+            border: darkblue solid;
+            border-radius: 5px;
+
+        }
+
+        .data-item {
+            width: 300px;
+            height: 560px;
+            display: inline-block;
+            border: darkblue solid;
+            border-radius: 5px;
+            background-color: #ffffff;
+            margin: 5px 5px;
+        }
+
+        .local-data-box {
+            margin-top: auto;
+        }
+
+        .local-data-box > ul li {
+            list-style: none;
+            padding-top: 10px;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            showLike();
+        });
+
+
+
+        function showLike() {
+            $.ajax({
+                type: 'GET',
+                url: '/mbti/re',
+                data: {},
+                success: function (response) {
+
+                    let total = response['mbti'];
+                    let city = response['city'];
+
+                    for (let i = 0; i < total.length; i++) {
+                        let name = total[i]['mbti']
+                        let city1=city[total[i]['area1']]['city'];
+                        let city2=city[total[i]['area2']]['city'];
+                        let order=total[i]['order'];
+                        let img1=city[total[i]['area1']]['img'];
+                        let img2=city[total[i]['area2']]['img'];
+
+                        let temp_html = `
+                            <div class="data-item">
+                                <div class="local-data-box" >
+                                    <a href="/mbti/result/${name}/${order}"style="text-decoration-line: none;color: black;">
+
+                                        <ul>
+                                            <li class="mbti">
+                                                <h3>mbti:${name}</h3>
+                                            </li>
+                                            <li>
+
+                                                <img style="width: 100%; height: 200px;margin: 10px 0"
+                                                    src="${img1}"
+                                                    alt="Placeholder image"
+
+                                                 />
+                                                <p>지역1:${city1}</p>
+                                            </li>
+                                            <li>
+                                                <img style="width: 100%; height: 200px;margin: 10px 0"
+                                                    src="${img2}"
+                                                    alt="Placeholder image"
+                                                 />
+                                                <p>지역2:${city2}</p>
+                                            </li>
+                                        </ul>
+                                    </a>
+                                </div>
+                            </div>`
+                        $('#mbti-like-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header"> <!--header 로고-->
+          <a href="/mbti" title="시작 페이지"style="text-decoration:none;color:black;">
+              <img class="image" src="/static/image/logo.png"  style="width: 200px"  border='0'>
+              <h4>전체 MBTI 결과를 볼 수 있습니다.</h4>
+          </a>
+      </div>
+    <div class="contents" id="mbti-like-box"></div>
+    <br>
+</div>
+
+</body>
+</html>

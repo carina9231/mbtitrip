@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>MBTI TRIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Single Day', cursive;
+        }
+
+        a:hover{
+            color: black;
+        }
+
+        body {
+            height: 100vh;
+            background-color: #3CC2FF;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body, h1, h2, h3, h4, ul, li, table, tr, td {
+            margin:0;
+            padding:0;
+        }
+
+        .wrap {
+            margin: auto;
+            width: 90%;
+
+        }
+        .header {
+            width: 800px;
+            height: 270px;
+            margin: 30px auto 30px;
+            padding: 20px 0;
+            border: 1px solid darkblue;
+            border-radius: 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+
+
+
+        .local-data-box > table td:nth-child(1){
+            padding-left: 20px;
+            text-align: left;
+            font-size: 40pt;
+        }
+
+        .local-data-box > table td:nth-child(2){
+            padding-right: 20px;
+            text-align: right;
+            font-size: 40pt;
+            font-weight: bold;
+        }
+
+
+    </style>
+    <script language="javascript">
+        function popup(i){
+            window.open("./popup/"+i,"popup", "width=800, height=800, left=30, top=30,scrollbars=no,titlebar=no,status=no,resizable=no,fullscreen=no");
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            showLike();
+        });
+
+
+
+        function showLike() {
+            $.ajax({
+                type: 'GET',
+                url: '/mbti/re',
+                data: {},
+                success: function (response) {
+                    let total = response['sort'];
+
+                    for (let i = 0; i < total.length; i++) {
+                        let imgs = total[i]['img'] ;
+                        let name = total[i]['city'];
+                        let like = total[i]['like'];
+                        let cafe = total[i]['cafe'];
+                        let tour = total[i]['tour'];
+                        let food = total[i]['food'];
+                        let temp_html = `<div class="card"  onClick="popup(${i})" style="cursor:pointer;width: 30%;margin: 30px auto;">
+                                            <img
+                                                  src="${imgs}"
+                                                  alt="Placeholder image"
+                                                  class="card-img-top"
+                                              />
+                                            <div class="card-body">
+                                                <h3 class="card-title ">${i+1}.지역 : ${name}</h3>
+                                                <p class="card-text">추천카페 : ${cafe}</p>
+                                                <p class="card-text">추천 관광지 : ${tour}</p>
+                                                <p class="card-text">추천 음식점 : ${food}</p>
+                                                <p class="card-text comment">좋아요 :${like}</p>
+                                            </div>
+                                        </div>
+                                          `
+                        $('#card-box').append(temp_html)
+                    }
+                }
+            });
+        }
+
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+        <div class="header"> <!--header 로고-->
+            <a href="/mbti" title="시작 페이지"style="text-decoration:none;color:black;">
+                <img class="image" src="/static/image/logo.png"  style="width: 250px"  border='0'>
+                <h4>전체 인기 여행지를 볼 수 있습니다.</h4>
+            </a>
+        </div>
+
+        <div class="wrap">
+            <div class="card-columns"style="display: flex; flex-direction:row; flex-wrap: wrap;" id="card-box"></div>
+        </div>
+
+
+
+</body>
+</html>
